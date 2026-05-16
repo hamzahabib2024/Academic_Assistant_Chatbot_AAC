@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AAC – AI Academic Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ─── CUSTOM CURSOR ─────────────────────────────── -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ─── LANDING PAGE ──────────────────────────────── -->
+  <section id="landing" class="page active">
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="landing-nav">
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span>AAC</span>
+      </div>
+      <div class="nav-links">
+        <a href="#" onclick="showPage('login')" class="nav-btn">Login</a>
+        <a href="#" onclick="showPage('register')" class="nav-btn nav-btn-fill">Get Started</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-badge">✦ Powered by NLP Intelligence</div>
+      <h1 class="hero-title">
+        Your Academic<br/>
+        <span class="gradient-text">AI Companion</span>
+      </h1>
+      <p class="hero-sub">Ask questions. Upload notes. Get instant AI-powered academic help — built for BS university students.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('register')">
+          Start Learning Free
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="showPage('login')">Sign In</button>
+      </div>
+
+      <div class="feature-pills">
+        <div class="pill">🧠 NLP Chat</div>
+        <div class="pill">📄 Note Summarizer</div>
+        <div class="pill">📚 Knowledge Base</div>
+        <div class="pill">🕓 Chat History</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="chat-preview-card">
+        <div class="cp-header">
+          <div class="cp-dots"><span></span><span></span><span></span></div>
+          <span>AAC Chat</span>
+        </div>
+        <div class="cp-messages">
+          <div class="cp-msg bot">
+            <div class="cp-avatar">◈</div>
+            <div class="cp-bubble">Hello! How can I help with your studies today?</div>
+          </div>
+          <div class="cp-msg user">
+            <div class="cp-bubble">Explain gradient descent in ML</div>
+          </div>
+          <div class="cp-msg bot typing-preview">
+            <div class="cp-avatar">◈</div>
+            <div class="cp-bubble">
+              Gradient descent is an optimization algorithm used to minimize a loss function by iteratively moving in the direction of steepest descent...
+            </div>
+          </div>
+        </div>
+        <div class="cp-input-bar">
+          <span>Ask anything academic...</span>
+          <div class="cp-send">➤</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">10K+</span><span>Students</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">50K+</span><span>Questions Answered</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">2s</span><span>Response Time</span></div>
+    </div>
+  </section>
+
+  <!-- ─── REGISTER ───────────────────────────────────── -->
+  <section id="register" class="page auth-page">
+    <div class="auth-left">
+      <div class="auth-logo" onclick="showPage('landing')">
+        <span class="logo-icon">◈</span> AAC
+      </div>
+      <h2 class="auth-title">Create your<br/><span class="gradient-text">free account</span></h2>
+      <p class="auth-sub">Join thousands of students using AI to excel academically.</p>
+      <div class="auth-features">
+        <div class="af-item"><span class="af-check">✓</span> Unlimited academic questions</div>
+        <div class="af-item"><span class="af-check">✓</span> PDF & text note summarization</div>
+        <div class="af-item"><span class="af-check">✓</span> Full chat history access</div>
+        <div class="af-item"><span class="af-check">✓</span> Always free for students</div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-card">
+        <h3>Register</h3>
+        <p class="auth-card-sub">Already have an account? <a href="#" onclick="showPage('login')">Sign in</a></p>
+        <div class="form-group">
+          <label>Full Name</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <input type="text" id="reg-name" placeholder="Muhammad Ali" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>University Email</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            <input type="email" id="reg-email" placeholder="s2022-bsai-xxx@university.edu.pk" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="reg-pass" placeholder="Create a strong password" />
+            <span class="toggle-pass" onclick="togglePass('reg-pass',this)">👁</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="reg-cpass" placeholder="Repeat your password" />
+          </div>
+        </div>
+        <button class="btn-primary full" onclick="doRegister()">Create Account</button>
+        <div id="reg-msg" class="form-msg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LOGIN ──────────────────────────────────────── -->
+  <section id="login" class="page auth-page">
+    <div class="auth-left">
+      <div class="auth-logo" onclick="showPage('landing')">
+        <span class="logo-icon">◈</span> AAC
+      </div>
+      <h2 class="auth-title">Welcome<br/><span class="gradient-text">back!</span></h2>
+      <p class="auth-sub">Your AI academic assistant is ready to help you succeed.</p>
+      <div class="login-card-art">
+        <div class="lca-orb lca-orb1"></div>
+        <div class="lca-orb lca-orb2"></div>
+        <div class="lca-float">
+          <div class="lca-icon">🎓</div>
+          <span>Academic Excellence</span>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-card">
+        <h3>Sign In</h3>
+        <p class="auth-card-sub">New student? <a href="#" onclick="showPage('register')">Create account</a></p>
+
+        <!-- Quick Demo Login Chips -->
+        <div class="demo-chips">
+          <span class="chip-label">Quick demo:</span>
+          <button class="demo-chip" onclick="demoLogin('student')">👨‍🎓 Student</button>
+          <button class="demo-chip" onclick="demoLogin('admin')">🛡 Admin</button>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            <input type="email" id="login-email" placeholder="your@email.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password <a href="#" class="forgot-link" style="float:right;font-size:0.78rem;">Forgot password?</a></label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="login-pass" placeholder="Enter your password" />
+            <span class="toggle-pass" onclick="togglePass('login-pass',this)">👁</span>
+          </div>
+        </div>
+        <button class="btn-primary full" onclick="doLogin()">Sign In</button>
+        <div id="login-msg" class="form-msg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STUDENT DASHBOARD ─────────────────────────── -->
+  <section id="student-dashboard" class="page dashboard-page">
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-top">
+        <div class="sb-logo">
+          <span class="logo-icon">◈</span>
+          <span class="sb-logo-text">AAC</span>
+        </div>
+        <button class="sb-toggle" onclick="toggleSidebar()" title="Toggle Sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+      <nav class="sb-nav">
+        <a href="#" class="sb-link active" onclick="switchTab(this,'chat-tab','student-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Chat</span>
+        </a>
+        <a href="#" class="sb-link" onclick="switchTab(this,'notes-tab','student-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+          <span>Upload Notes</span>
+        </a>
+        <a href="#" class="sb-link" onclick="switchTab(this,'history-tab','student-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>History</span>
+        </a>
+        <a href="#" class="sb-link" onclick="switchTab(this,'profile-tab','student-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>Profile</span>
+        </a>
+      </nav>
+      <div class="sb-footer">
+        <div class="sb-user-info" id="sb-user-name">Student</div>
+        <button class="sb-logout" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <!-- CHAT TAB -->
+      <div id="chat-tab" class="tab-content active">
+        <div class="chat-header">
+          <div>
+            <h2>Academic Chat</h2>
+            <p>Ask me anything about your studies</p>
+          </div>
+          <button class="new-chat-btn" onclick="clearChat()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Chat
+          </button>
+        </div>
+        <div class="chat-window" id="chat-window">
+          <div class="chat-welcome">
+            <div class="cw-icon">◈</div>
+            <h3>Hello, <span id="cw-name">Student</span>!</h3>
+            <p>I'm your AI Academic Assistant. Ask me about any academic topic, subject, or concept.</p>
+            <div class="suggestion-chips">
+              <button class="s-chip" onclick="sendSuggestion(this)">Explain Machine Learning basics</button>
+              <button class="s-chip" onclick="sendSuggestion(this)">What is the OSI model?</button>
+              <button class="s-chip" onclick="sendSuggestion(this)">Summarize Big O notation</button>
+              <button class="s-chip" onclick="sendSuggestion(this)">How does TCP/IP work?</button>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <div class="chat-input-wrap">
+            <button class="attach-btn" title="Attach file" onclick="document.getElementById('chat-file-input').click()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </button>
+            <input type="file" id="chat-file-input" style="display:none" accept=".pdf,.txt" onchange="handleChatFileAttach(this)">
+            <textarea id="chat-input" placeholder="Ask an academic question..." rows="1" onkeydown="chatKeydown(event)" oninput="autoResize(this)"></textarea>
+            <button class="send-btn" onclick="sendMessage()" id="send-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>
+            </button>
+          </div>
+          <div class="chat-hint">Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for new line</div>
+        </div>
+      </div>
+
+      <!-- NOTES TAB -->
+      <div id="notes-tab" class="tab-content">
+        <div class="tab-header">
+          <h2>Upload & Summarize Notes</h2>
+          <p>Upload your PDF or text notes and get an instant AI summary</p>
+        </div>
+        <div class="upload-zone" id="upload-zone" ondrop="dropFile(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)">
+          <div class="uz-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <p class="uz-title">Drag & drop your notes here</p>
+          <p class="uz-sub">or click to browse — PDF, TXT files supported</p>
+          <button class="btn-primary" onclick="document.getElementById('file-upload').click()">Browse Files</button>
+          <input type="file" id="file-upload" style="display:none" accept=".pdf,.txt" onchange="handleFileUpload(this)">
+        </div>
+
+        <div id="file-preview" class="file-preview hidden">
+          <div class="fp-info">
+            <div class="fp-icon">📄</div>
+            <div>
+              <div class="fp-name" id="fp-name">notes.pdf</div>
+              <div class="fp-size" id="fp-size">0 KB</div>
+            </div>
+            <button class="fp-remove" onclick="removeFile()">✕</button>
+          </div>
+          <button class="btn-primary" onclick="summarizeFile()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Generate Summary
+          </button>
+        </div>
+
+        <div id="summary-output" class="summary-output hidden">
+          <div class="so-header">
+            <span>✦ AI Summary</span>
+            <button onclick="copySummary()">Copy</button>
+          </div>
+          <div class="so-body" id="so-body"></div>
+        </div>
+
+        <div class="uploaded-list" id="uploaded-list">
+          <h4>Recent Uploads</h4>
+          <div class="ul-empty">No files uploaded yet</div>
+        </div>
+      </div>
+
+      <!-- HISTORY TAB -->
+      <div id="history-tab" class="tab-content">
+        <div class="tab-header">
+          <h2>Chat History</h2>
+          <p>All your previous academic conversations</p>
+        </div>
+        <div class="history-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search past conversations..." oninput="filterHistory(this.value)" />
+        </div>
+        <div class="history-list" id="history-list">
+          <div class="history-empty">
+            <div class="he-icon">🕓</div>
+            <p>Your chat history will appear here after your first conversation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE TAB -->
+      <div id="profile-tab" class="tab-content">
+        <div class="tab-header">
+          <h2>My Profile</h2>
+          <p>Manage your account information</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-avatar" id="profile-avatar">MA</div>
+          <div class="profile-details">
+            <h3 id="profile-name">Student Name</h3>
+            <p id="profile-email">student@email.com</p>
+            <span class="role-badge student-badge">🎓 Student</span>
+          </div>
+        </div>
+        <div class="profile-stats-grid">
+          <div class="psg-item"><span class="psg-num" id="stat-questions">0</span><span>Questions Asked</span></div>
+          <div class="psg-item"><span class="psg-num" id="stat-files">0</span><span>Files Uploaded</span></div>
+          <div class="psg-item"><span class="psg-num">BSAI</span><span>Program</span></div>
+          <div class="psg-item"><span class="psg-num">5th</span><span>Semester</span></div>
+        </div>
+        <div class="profile-form">
+          <div class="form-group">
+            <label>Full Name</label>
+            <div class="input-wrap"><input type="text" id="pf-name" /></div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-wrap"><input type="email" id="pf-email" readonly style="opacity:0.6;cursor:not-allowed;" /></div>
+          </div>
+          <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ─── ADMIN DASHBOARD ────────────────────────────── -->
+  <section id="admin-dashboard" class="page dashboard-page">
+    <aside class="sidebar sidebar-admin" id="admin-sidebar">
+      <div class="sb-top">
+        <div class="sb-logo">
+          <span class="logo-icon">◈</span>
+          <span class="sb-logo-text">AAC Admin</span>
+        </div>
+        <button class="sb-toggle" onclick="toggleAdminSidebar()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+      <nav class="sb-nav">
+        <a href="#" class="sb-link active" onclick="switchTab(this,'adash-tab','admin-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="sb-link" onclick="switchTab(this,'ausers-tab','admin-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Users</span>
+        </a>
+        <a href="#" class="sb-link" onclick="switchTab(this,'akb-tab','admin-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span>Knowledge Base</span>
+        </a>
+        <a href="#" class="sb-link" onclick="switchTab(this,'alogs-tab','admin-dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+          <span>Chat Logs</span>
+        </a>
+      </nav>
+      <div class="sb-footer">
+        <div class="sb-user-info">Administrator</div>
+        <button class="sb-logout" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <!-- ADMIN OVERVIEW -->
+      <div id="adash-tab" class="tab-content active">
+        <div class="tab-header">
+          <h2>Admin Overview</h2>
+          <p>System statistics and monitoring</p>
+        </div>
+        <div class="admin-stats-grid">
+          <div class="asg-card">
+            <div class="asg-icon" style="background:var(--accent-a)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="asg-num" id="asg-users">3</div>
+              <div class="asg-label">Total Students</div>
+            </div>
+          </div>
+          <div class="asg-card">
+            <div class="asg-icon" style="background:var(--accent-b)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <div class="asg-num" id="asg-chats">12</div>
+              <div class="asg-label">Chats Today</div>
+            </div>
+          </div>
+          <div class="asg-card">
+            <div class="asg-icon" style="background:var(--accent-c)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div>
+              <div class="asg-num" id="asg-kb">8</div>
+              <div class="asg-label">Knowledge Entries</div>
+            </div>
+          </div>
+          <div class="asg-card">
+            <div class="asg-icon" style="background:var(--accent-d)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            </div>
+            <div>
+              <div class="asg-num" id="asg-files">5</div>
+              <div class="asg-label">Files Uploaded</div>
+            </div>
+          </div>
+        </div>
+        <div class="recent-activity">
+          <h4>Recent Activity</h4>
+          <div class="ra-list" id="ra-list">
+            <div class="ra-item"><span class="ra-dot green"></span><span>Ahmed Hassan asked about Neural Networks</span><span class="ra-time">2m ago</span></div>
+            <div class="ra-item"><span class="ra-dot blue"></span><span>Sara Khan uploaded lecture notes</span><span class="ra-time">15m ago</span></div>
+            <div class="ra-item"><span class="ra-dot green"></span><span>Ali Raza asked about Data Structures</span><span class="ra-time">1h ago</span></div>
+            <div class="ra-item"><span class="ra-dot orange"></span><span>New student registered</span><span class="ra-time">3h ago</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS TAB -->
+      <div id="ausers-tab" class="tab-content">
+        <div class="tab-header-row">
+          <div>
+            <h2>User Management</h2>
+            <p>View and manage registered students</p>
+          </div>
+          <button class="btn-primary small" onclick="openAddUserModal()">+ Add User</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="users-table">
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Status</th><th>Joined</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr><td>Ahmed Hassan</td><td>ahmed@uni.edu.pk</td><td><span class="badge active">Active</span></td><td>Jan 2024</td><td><button class="tbl-btn" onclick="toggleUserStatus(this)">Deactivate</button> <button class="tbl-btn danger" onclick="deleteUser(this)">Delete</button></td></tr>
+              <tr><td>Sara Khan</td><td>sara@uni.edu.pk</td><td><span class="badge active">Active</span></td><td>Feb 2024</td><td><button class="tbl-btn" onclick="toggleUserStatus(this)">Deactivate</button> <button class="tbl-btn danger" onclick="deleteUser(this)">Delete</button></td></tr>
+              <tr><td>Ali Raza</td><td>ali@uni.edu.pk</td><td><span class="badge inactive">Inactive</span></td><td>Mar 2024</td><td><button class="tbl-btn" onclick="toggleUserStatus(this)">Activate</button> <button class="tbl-btn danger" onclick="deleteUser(this)">Delete</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- KNOWLEDGE BASE TAB -->
+      <div id="akb-tab" class="tab-content">
+        <div class="tab-header-row">
+          <div>
+            <h2>Knowledge Base</h2>
+            <p>Manage academic content and FAQs</p>
+          </div>
+          <button class="btn-primary small" onclick="openKBModal()">+ Add Entry</button>
+        </div>
+        <div class="kb-grid" id="kb-grid">
+          <div class="kb-card">
+            <div class="kb-cat">Machine Learning</div>
+            <h4>Gradient Descent Algorithm</h4>
+            <p>An optimization algorithm that minimizes loss functions by iteratively adjusting parameters in the direction of steepest descent.</p>
+            <div class="kb-actions"><button onclick="editKB(this)">Edit</button><button class="danger" onclick="deleteKB(this)">Delete</button></div>
+          </div>
+          <div class="kb-card">
+            <div class="kb-cat">Data Structures</div>
+            <h4>Binary Search Trees</h4>
+            <p>A node-based tree structure where each node has at most two children, with left subtree values less than root and right greater.</p>
+            <div class="kb-actions"><button onclick="editKB(this)">Edit</button><button class="danger" onclick="deleteKB(this)">Delete</button></div>
+          </div>
+          <div class="kb-card">
+            <div class="kb-cat">Networking</div>
+            <h4>OSI Model Layers</h4>
+            <p>A conceptual framework with 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.</p>
+            <div class="kb-actions"><button onclick="editKB(this)">Edit</button><button class="danger" onclick="deleteKB(this)">Delete</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAT LOGS TAB -->
+      <div id="alogs-tab" class="tab-content">
+        <div class="tab-header">
+          <h2>Chat Logs</h2>
+          <p>Monitor all student-chatbot conversations</p>
+        </div>
+        <div class="logs-filter">
+          <input type="text" placeholder="Search by student or keyword..." oninput="filterLogs(this.value)">
+          <select onchange="filterLogsByDate(this.value)">
+            <option>All Time</option>
+            <option>Today</option>
+            <option>This Week</option>
+          </select>
+        </div>
+        <div class="logs-list" id="logs-list">
+          <div class="log-item">
+            <div class="log-meta"><strong>Ahmed Hassan</strong><span>April 8, 2026 · 10:24 AM</span></div>
+            <div class="log-q">Q: What is the difference between supervised and unsupervised learning?</div>
+            <div class="log-a">A: Supervised learning uses labeled training data to learn a mapping, while unsupervised learning finds hidden patterns in unlabeled data...</div>
+          </div>
+          <div class="log-item">
+            <div class="log-meta"><strong>Sara Khan</strong><span>April 8, 2026 · 09:15 AM</span></div>
+            <div class="log-q">Q: Explain the TCP three-way handshake</div>
+            <div class="log-a">A: The TCP three-way handshake involves three steps: SYN (client initiates), SYN-ACK (server acknowledges), ACK (client confirms)...</div>
+          </div>
+          <div class="log-item">
+            <div class="log-meta"><strong>Ali Raza</strong><span>April 7, 2026 · 03:45 PM</span></div>
+            <div class="log-q">Q: How does a hash table work?</div>
+            <div class="log-a">A: A hash table stores key-value pairs using a hash function to compute an index into an array of buckets or slots...</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ─── MODALS ──────────────────────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+
+  <!-- KB Modal -->
+  <div class="modal" id="kb-modal">
+    <div class="modal-header">
+      <h3 id="kb-modal-title">Add Knowledge Entry</h3>
+      <button onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <div class="input-wrap"><input type="text" id="kb-title" placeholder="Topic title" /></div>
+    </div>
+    <div class="form-group">
+      <label>Category</label>
+      <div class="input-wrap"><input type="text" id="kb-cat" placeholder="e.g. Machine Learning" /></div>
+    </div>
+    <div class="form-group">
+      <label>Content</label>
+      <textarea id="kb-content" rows="4" placeholder="Academic content or explanation..."></textarea>
+    </div>
+    <button class="btn-primary full" onclick="saveKBEntry()">Save Entry</button>
+  </div>
+
+  <!-- Add User Modal -->
+  <div class="modal" id="adduser-modal">
+    <div class="modal-header">
+      <h3>Add New Student</h3>
+      <button onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <div class="input-wrap"><input type="text" id="au-name" placeholder="Student name" /></div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <div class="input-wrap"><input type="email" id="au-email" placeholder="student@uni.edu.pk" /></div>
+    </div>
+    <button class="btn-primary full" onclick="addUser()">Add Student</button>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
